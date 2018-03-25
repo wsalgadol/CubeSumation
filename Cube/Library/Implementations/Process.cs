@@ -9,7 +9,29 @@ namespace Library.Implementations
         private static Update _update = new Update();
         private static Query _query = new Query();
         private static int[,,] matriz3D;
-        public  void ProcessQuery(int dimension, int queries, int[,,] matriz)
+
+        public void ProcessQuery()
+        {
+            int cases = int.Parse(Console.ReadLine());
+            while (cases > 0)
+            {
+                var input2 = Console.ReadLine();
+                if (!string.IsNullOrEmpty(input2.Trim()))
+                {
+                    var input2List = input2.Split(' ');
+                    int dimen = int.Parse(input2List[0]);
+                    int query = int.Parse(input2List[1]);
+                    matriz3D = new int[dimen, dimen, dimen];
+                    ProcessCases(dimen, query);
+                    cases--;
+                }
+                else
+                {
+                    Console.WriteLine("Enter a valid value");
+                }
+            }
+        }
+        public  void ProcessCases(int dimension, int queries)
         {
             var cont = 1;
             var sum = 0;
@@ -24,10 +46,10 @@ namespace Library.Implementations
                     switch (queryName)
                     {
                         case "UPDATE":
-                            matriz3D = _update.UpdateM3(inputQueryList, matriz);
+                            matriz3D = _update.UpdateM3(inputQueryList, matriz3D);
                             break;
                         case "QUERY":
-                            sum = _query.Sum(inputQueryList, matriz);
+                            sum = _query.Sum(inputQueryList, matriz3D);
                             break;
                     } 
                     queries--;
@@ -38,7 +60,9 @@ namespace Library.Implementations
                     Console.WriteLine("Enter any query (UPDATE, QUERY");
                 }
             }
-        }       
+        }
+
+        
 
 
     }

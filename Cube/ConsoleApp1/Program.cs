@@ -15,25 +15,9 @@ namespace Cube
         {
             IProcess process = new Process();
             try
-            {
-                int cases = int.Parse(Console.ReadLine());
-                while (cases > 0)
-                {
-                    var input2 = Console.ReadLine();
-                    if (!string.IsNullOrEmpty(input2.Trim()))
-                    {
-                        var input2List = input2.Split(' ');
-                        int dimen = int.Parse(input2List[0]);
-                        int query = int.Parse(input2List[1]);
-                        var matriz3D = new int[dimen, dimen, dimen];
-                        process.ProcessQuery(dimen, query, matriz3D);
-                        cases--;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Enter a valid value");
-                    }
-                }
+            {                
+                process.ProcessQuery();
+                 
                 Console.WriteLine("Finish Proccess, Press Enter");
                 Console.ReadLine();
             }
